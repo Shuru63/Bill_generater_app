@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:ital,wght@0,200;0,300;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        .bill-body{
+    padding:0rem 1rem 1rem 1rem;
+    font-family: "Roboto", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+.bill-body-cover{
+    padding:0.8rem 1rem 1rem 1rem;
+}
+.biling-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.bill-head{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.company-image img{
+    width: 25%;
+    height: 25%;
+}
+.sold-container,.pan-container ,.orderNo-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+.Shiping-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+.billing-address{
+    word-wrap: break-word; 
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: normal;
+  text-align: right;
+}
+.font-state{
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: right;
+}
+p{
+    margin: 5px;
+}
+.Shiping{
+    width: 40%;
+    word-wrap: break-word; 
+  overflow-wrap: break-word;
+  max-width: 100%;
+  white-space: normal;
+  text-align: right;
+}
+.h4-heading{
+    font-size: 1.1rem;
+    margin: 0;
+}
+.font-bold{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.biling-table tr td{
+    border: 2px solid black;
+    padding: 0.4rem;
+}
+.table-head{
+    background-color: rgb(184, 184, 184);
+    color: #000000;
+    font-size: 1rem;
+    font-weight:700;
+}
+.table-description{
+    width: 20rem;
+}
+.goods-col{
+    height: 7rem;
+}
+.authorierzed{
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.amount-word{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.table-total{
+    font-size: 1rem;
+    font-weight: 500; 
+}
+.desr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+.desr p{
+    width: 70%;
+    color: rgb(207, 204, 204);
+    line-height: 1.6rem;
+ 
+}
+    </style>
+    <div class="bill-body">
+        <div class="bill-body-cover">
+            <div class="bill-head">
+                <div class="company-image">
+                    <img src="{{logoBase64}}">
+                </div>
+                <div class="company-heading">
+                    <h2>Tax Invoice/Bill of Supply/Cash Memo</h2>
+                    <p>(Original for Recipient)</p>
+                </div>
+            </div>
+            <div class="sold-container">
+                <div class="sold-by">
+                    <h4 class="h4-heading">Sold By :</h4>
+                    <p>{{companyName}}</p>
+                </div>
+                <div class="billing-address">
+                    <h4 class="h4-heading">Billing Address :</h4>
+                    <p>{{billingAddress}}</p>
+                </div>
+            </div>
+            <div class="pan-container">
+                <div class="pan-no">
+                    <p><span class="font-bold">Pan No :</span> {{panNo}}</p>
+                    <p><span class="font-bold">GST Registration No. :</span> {{gstNo}}</p>
+                </div>
+                <div class="State-ut">
+                    <p><span class="font-state">State/UT Code :</span> {{stateUTCode}}</p>
+                </div>
+            </div>
+            <div class="Shiping-container">
+                <div class="Shiping">
+                    <h4 class="h4-heading">Shipping Address :</h4>
+                    <p>{{shippingAddress}}</p>
+                    <p><span class="font-bold">Place of Supply :</span> {{placeOfSupply}}</p>
+                    <p><span class="font-bold">Place of Delivery :</span> {{placeOfDelivery}}</p>
+                </div>
+            </div>
+            <div class="orderNo-container">
+                <div class="order-no">
+                    <p><span class="font-bold">Order Number :</span> {{orderNumber}}</p>
+                    <p><span class="font-bold">Order Date :</span> {{orderDate}}</p>
+                </div>
+                <div class="State-ut">
+                    <p><span class="font-bold">Invoice Number :</span> {{invoiceNumber}}</p>
+                    <p><span class="font-bold">Invoice Date :</span> {{invoiceDate}}</p>
+                </div>
+            </div>
+            <div class="bill-table">
+                <table class="biling-table">
+                    <thead class="table-head">
+                        <tr>
+                            <td>SL No</td>
+                            <td class="table-description">Description</td>
+                            <td>Unit Price</td>
+                            <td>Qty</td>
+                            <td>Net Amount</td>
+                            <td>Tax Rate</td>
+                            <td>Tax Type</td>
+                            <td>Tax Amount</td>
+                            <td>Total Amount</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{itemsRows}}
+                        <tr>
+                            <td colspan="7" class="table-total">Total :</td>
+                            <td>{{totalTaxAmount}}</td>
+                            <td>{{totalAmount}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" class="amount-word">Amount in Words :
+                                <p>{{totalAmountInWords}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" class="authorized">For Varasiddhi Silk Exports:
+                                <p></p>
+                                <p>Authorized Signatory</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="whether">
+                <p>Whether tax is Payable under reverse charge - NO</p>
+            </div>
+            <div class="desr">
+                <p>Shubham Kumar Garg's project generates PDF invoices using Puppeteer, embeds local images using base64 encoding, and dynamically fills data from templates with robust error handling.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
