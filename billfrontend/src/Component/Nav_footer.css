@@ -10,12 +10,17 @@
 }
 
 .navigation {
-    background-color: black;
-
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(10, 10, 10, 0.2); 
 }
-
+.logo  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .logo img {
-    width: 70%;
+    width: 30%;
+
 }
 
 .navbar-toggler {
@@ -29,11 +34,12 @@
 
 }
 
-.nav {
+.nav-bill {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    color: white;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(10, 10, 10, 0.2);
 }
 
 .nav-ul {
@@ -85,12 +91,17 @@
 .drop-down {
     display: block;
 }
-
+.sub{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 .sub-btn {
     background-color: #ee9016;
     padding: 1rem 1.5rem;
     border-radius: 5rem;
     cursor: pointer;
+    margin: 1rem;
 }
 .sub-btn:hover{
     background-color: #e95d5d;
@@ -145,29 +156,7 @@
     .nav-hide{
         display: none;
     }
-    .mob-sub {
-        display: contents;
-    }
-
-    .sub {
-        display: none;
-    }
-    
-.drop-down {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: #e95d5d;
-    border: 1px solid #ccc;
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    width: 200px;
-    z-index: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 0.55rem;
-}
+   
 }
 .ftr-logo{
     width: 100%;
