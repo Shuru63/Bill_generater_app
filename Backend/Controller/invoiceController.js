@@ -77,7 +77,7 @@ const convertToWords = (amount) => {
 };
 
 const createInvoice = async (req, res) => {
-//   try {
+  try {
     const invoiceData = req.body;
     const newInvoice = new Invoice(invoiceData);
 
@@ -102,19 +102,21 @@ const createInvoice = async (req, res) => {
     const pdfFilePath = path.join(pdfDirectory, uniqueFileName);
     fs.writeFileSync(pdfFilePath, pdfBuffer);
 
-    res.download(pdfFilePath, 'invoice.pdf', (err) => {
+    res.download(pdfFilePath, 'invoice.pdf',(err) => {
       if (err) {
         console.error('Error downloading PDF:', err);
         if (!res.headersSent) {
-          res.status(500).json({ message: ' generating or downloading the PDF' });
+          res.status(500).json({ message: 'Error generating or downloading the PDF' });
         }
+      } else {
+        res.status(200).json({ message: 'PDF downloaded successfully' });
       }
     });
-//   } catch (err) {
-//     if (!res.headersSent) {
-//       res.status(500).json({ error: 'Failed to create invoice' });
-//     }
-//   }
+  } catch (err) {
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Failed to create invoice' });
+    }
+  }
 };
 
 module.exports = createInvoice;
